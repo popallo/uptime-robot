@@ -10,7 +10,7 @@
     <?php
     require_once( __DIR__ . '/php/main.php' ); // require our main php file
     $monitor_robot    = new monitor_robot(); // init our class
-    $monitor_response = $monitor_robot->monitor_endpoint( $UP_ACCOUNT_API_KEY ); // Call the endpoint and get the data
+    $monitor_response = $monitor_robot->monitor_endpoint( $config['UP_ACCOUNT_API_KEY'] ); // Call the endpoint and get the data
     // Check if curl is installed and show CURL install info if its not installed
     if ( $monitor_robot->monitor_curl() === FALSE ): ?>
     <!-- Download Curl Warning -->

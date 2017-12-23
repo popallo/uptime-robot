@@ -89,11 +89,11 @@ class monitor_robot {
   /**
   * Monitor Response Data Timestamps and values
   *
-  * @param  array $monitor_response   Monitor response data
+  * @param  array $monitor_response_data   Monitor response data
   * @return array $data               Array of timestamps and array of values
   */
 
-  public function monitor_response_data( $monitor_response_data ) {
+  public function monitor_response_data( $monitor_response_data, $config = array() ) {
     $response_datetime = [];
     $response_value    = [];
 
@@ -103,7 +103,8 @@ class monitor_robot {
 
       foreach ( array_reverse( $monitor['responsetime'] ) as $response ) {
 
-        $response_datetime[] = $response['datetime'];
+        $datetime = $config['DATEFORMAT'] == 'FR'?date("d/m/Y h:i:s", strtotime($response['datetime'])):$response['datetime'];
+        $response_datetime[] = $datetime;
         $response_value[]    = $response['value'];
 
       }
@@ -138,9 +139,9 @@ class monitor_robot {
 
           foreach ( $monitor['log'] as $log ):
 
-          $log_datetime = $config['DATEFORMAT'] == 'FR'?date("d/m/Y", strtotime($log['datetime'])):$log['datetime'];
+          $datetime = $config['DATEFORMAT'] == 'FR'?date("d/m/Y", strtotime($log['datetime'])):$log['datetime'];
          
-          echo "<span class=" . $this->log_type( $log['type'] ) . ">" . _( 'Monitor' ) . ' ' . $this->log_type( $log['type'] ) . ' ' . _( 'on' ) . ' ' . $log_datetime . "</span><hr>";
+          echo "<span class=" . $this->log_type( $log['type'] ) . ">" . _( 'Monitor' ) . ' ' . $this->log_type( $log['type'] ) . ' ' . _( 'on' ) . ' ' . $datetime . "</span><hr>";
  
           endforeach;
 
@@ -247,7 +248,7 @@ class monitor_robot {
   * @param array $monitor_response Monitor data
   */
 
-  public function charts( $monitor_response ) {
+  public function charts( $monitor_response, $config ) {
 
     if ( is_array( $monitor_response['monitors']['monitor'] ) ): // check if we have monitors before trying to show charts
 
@@ -269,7 +270,7 @@ class monitor_robot {
             <canvas id="chart<?php echo $i; ?>"></canvas>
           </div>
 
-          <?php list( $response_datetime, $response_value ) = $this->monitor_response_data( $monitor['responsetime'] ); ?>
+          <?php list( $response_datetime, $response_value ) = $this->monitor_response_data( $monitor['responsetime'], $config ); ?>
 
           <script type="text/javascript">
 

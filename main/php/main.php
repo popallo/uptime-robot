@@ -32,8 +32,9 @@ class monitor_robot {
   * @link https://uptimerobot.com/api
   */
 
-  public function monitor_endpoint( $config ) {
-    $endpoint = "https://api.uptimerobot.com/getMonitors?apiKey=" . $config['UP_ACCOUNT_API_KEY'] . "&responseTimes=1&logs=1&format=json&noJsonCallback=1";
+  public function monitor_endpoint( $UP_ACCOUNT_API_KEY ) {
+
+    $endpoint = "https://api.uptimerobot.com/getMonitors?apiKey=" . $UP_ACCOUNT_API_KEY . "&responseTimes=1&logs=1&format=json&noJsonCallback=1";
     $curl     = curl_init( $endpoint );
 
     curl_setopt_array( $curl, [
@@ -53,7 +54,7 @@ class monitor_robot {
   * @param array $monitor_data Monitor Data
   */
 
-  public function monitor_table_body( $monitor_data, $config ) {
+  public function monitor_table_body( $monitor_data, $config = array() ) {
 
     if ( is_array( $monitor_data ) ) {
 

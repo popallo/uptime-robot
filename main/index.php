@@ -38,7 +38,7 @@
               <thead>
                 <tr>
                   <th><?php echo _( 'Name' ); ?></th>
-                  <?php if($SEE_URL === TRUE) : ?>
+                  <?php if($config['SEE_URL'] === TRUE) : ?>
                   <th><?php echo _( 'URL' ); ?></th>
                   <?php endif ?>
                   <th><?php echo _( 'Status' ); ?></th>

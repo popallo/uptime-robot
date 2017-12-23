@@ -54,7 +54,7 @@
             </table>
           </div>
           <!-- Charts -->
-          <?php $monitor_robot->charts( $monitor_response ); ?>
+          <?php $monitor_robot->charts( $monitor_response, $config ); ?>
         </div>
       </div>
     </div>

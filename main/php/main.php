@@ -121,7 +121,7 @@ class monitor_robot {
   *
   */
 
-  public function past_incidents( $monitor_response ) {
+  public function past_incidents( $monitor_response, $config = array() ) {
     if ( is_array( $monitor_response['monitors']['monitor'] ) ) {
 
       if ( count( $monitor_response['monitors']['monitor'] ) >= 4 ) {
@@ -137,8 +137,10 @@ class monitor_robot {
         if ( isset( $monitor['log'] ) ): 
 
           foreach ( $monitor['log'] as $log ):
+
+          $log_datetime = $config['DATEFORMAT'] == 'FR'?date("d/m/Y", strtotime($log['datetime'])):$log['datetime'];
          
-          echo "<span class=" . $this->log_type( $log['type'] ) . ">" . _( 'Monitor' ) . ' ' . $this->log_type( $log['type'] ) . ' ' . _( 'on' ) . ' ' . $log['datetime'] . "</span><hr>"; 
+          echo "<span class=" . $this->log_type( $log['type'] ) . ">" . _( 'Monitor' ) . ' ' . $this->log_type( $log['type'] ) . ' ' . _( 'on' ) . ' ' . $log_datetime . "</span><hr>";
  
           endforeach;
 

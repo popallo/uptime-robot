@@ -38,7 +38,9 @@
               <thead>
                 <tr>
                   <th><?php echo _( 'Name' ); ?></th>
+                  <?php if($SEE_URL === TRUE) : ?>
                   <th><?php echo _( 'URL' ); ?></th>
+                  <?php endif ?>
                   <th><?php echo _( 'Status' ); ?></th>
                   <th><?php echo _( 'Type' ); ?></th>
                   <th><?php echo _( 'Interval' ); ?></th>
@@ -47,7 +49,7 @@
                 </tr>
               </thead>
               <tbody>
-                <?php $monitor_robot->monitor_table_body( $monitor_response['monitors']['monitor'] ); ?>
+                <?php $monitor_robot->monitor_table_body( $monitor_response['monitors']['monitor'], $config ); ?>
               </tbody>
             </table>
           </div>

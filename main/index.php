@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title><?php echo _( 'Uptime Monitor' ); ?></title>
     <link rel="stylesheet" href="css/dist/all.styles.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="icon" type="image/png" href="css/images/system_task.ico" />
     <script type="text/javascript" src="js/dist/all.scripts.min.js"></script>
   </head>
   <body class="m-b-2 m-t-3">

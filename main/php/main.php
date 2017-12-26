@@ -103,7 +103,7 @@ class monitor_robot {
 
       foreach ( array_reverse( $monitor['responsetime'] ) as $response ) {
 
-        $datetime = $config['DATEFORMAT'] == 'FR'?date("d/m/Y h:i:s", strtotime($response['datetime'])):$response['datetime'];
+        $datetime = $config['DATEFORMAT'] == 'FR'?date("d/m/Y H:i:s", strtotime($response['datetime'])):$response['datetime'];
         $response_datetime[] = $datetime;
         $response_value[]    = $response['value'];
 
